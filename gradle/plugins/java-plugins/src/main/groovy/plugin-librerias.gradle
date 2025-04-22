@@ -1,0 +1,4 @@
+plugins {
+    id 'plugin-java-core'
+    id 'java-library'
+}

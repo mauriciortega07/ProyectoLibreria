@@ -1,0 +1,17 @@
+plugins {
+    id 'plugin-contexto'
+}
+
+application {
+    mainClass.set('com.ebac.proyectoJava.Contexto')
+}
+
+dependencies {
+    implementation project(':capa-datos')
+    implementation project(':capa-negocio')
+}
+
+run {
+    standardInput = System.in
+}
+
