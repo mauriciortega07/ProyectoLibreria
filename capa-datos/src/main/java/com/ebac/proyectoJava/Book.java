@@ -48,10 +48,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Libro = " +
-                "authorBook= '" + authorBook + '\'' +
-                ", titleBook= '" + titleBook + '\'' +
-                ", releaseYear= " + releaseYear +
-                ", isbnCode= " + isbnCode;
+        return "Libro = { " +
+                "Nombre = '" +  titleBook + '\'' +
+                ", Autor = '" + authorBook + '\'' +
+                ", Año de Lanzamiento = " + releaseYear +
+                ", Codigo ISBN = " + isbnCode + " }";
     }
 }

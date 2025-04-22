@@ -8,6 +8,7 @@ public class Library {
     private List<User> userList = new ArrayList<>();
     private List<Author> authorList = new ArrayList<>();
 
+    //METODO QUE AGREGA UN LIBRO A LA LISTA DE LIBROS
     public void addBook(Book book) {
         List<Book> nuevosLibros = new ArrayList<>();
 
@@ -29,10 +30,12 @@ public class Library {
 
     }
 
+    //METODO QUE OBTIENE LA LISTA DE LIBROS
     public List<Book> getBookList() {
         return bookList;
     }
 
+    //METODOS PARA ACTUALIZAR LIBROS
     public void updateBook(int indexBook, Book book) {
         bookList.set(indexBook, book);
         System.out.println(bookList.get(indexBook));
@@ -40,7 +43,6 @@ public class Library {
         System.out.println("++LIBRO ACTUALIZADO!++");
         System.out.println("+++++++++++++++++++");
     }
-
     public Book updateBookForIsbn(String isbnCode) throws ExcepcionesPropias {
             return bookList.stream()
                     .filter(book -> book.getIsbnCode().equalsIgnoreCase(isbnCode))
@@ -48,7 +50,7 @@ public class Library {
                     .orElseThrow(() -> new ExcepcionesPropias("Libro con isbn " + isbnCode + " No econtrado"));
     }
 
-
+    //METODOS PARA ELIMINAR LIBROS
     public void deletedBook(String isbnCode) throws ExcepcionesPropias {
         boolean existIsbnCode = bookList.stream().anyMatch(book -> book.getIsbnCode().equalsIgnoreCase(isbnCode));
 
@@ -59,8 +61,9 @@ public class Library {
         bookList.removeIf(book -> book.getIsbnCode().equalsIgnoreCase(isbnCode));
     }
 
+    //METODO PARA AGREGAR UN AUTOR
     public void addAuthor(Author author) {
-
+        authorList.add(author);
     }
 
     public void addUser(User user) {

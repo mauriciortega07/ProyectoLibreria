@@ -4,13 +4,14 @@ import com.ebac.proyectoJava.Book;
 import com.ebac.proyectoJava.ExcepcionesPropias;
 
 import java.util.List;
-import java.util.Scanner;
 
 import static com.ebac.proyectoJava.MenuSelector.library;
 import static com.ebac.proyectoJava.MenuSelector.scanner;
 
-public class MenuSelectorCaseMethods {
+public class MenuSelectorCaseBooksMethods {
 
+
+    //METODO QUE COMPRUEBA SI EL VALOR INGRESADO ES UN STRING
     public boolean isString(String bookName) {
         boolean resultado;
         try {
@@ -30,17 +31,10 @@ public class MenuSelectorCaseMethods {
         System.out.println("***** Agregar un Libro *****");
         //NOMBRE DEL LIBRO
         String bookName = "";
-        do {
-            System.out.print("Ingresa el nombre del libro: ");
-            String newName = scanner.nextLine();
-            bookName = newName;
 
-            if (!isString(bookName)) {
-                System.out.println("Debes ingresar un titulo correcto");
-            }
-
-
-        } while (!isString(bookName));
+        System.out.print("Ingresa el nombre del libro: ");
+        String newName = scanner.nextLine();
+        bookName = newName;
 
         return bookName;
     }
@@ -100,8 +94,8 @@ public class MenuSelectorCaseMethods {
     }
 
 
-    //METODO QUE NOS MUESTRA LA LISTA DE LIBROS
-    public void checkListBook() {
+    //METODO QUE NOS MUESTRA LA LISTA DE LIBROS ACTUALES
+    public void ListBooks() {
         System.out.println("***** Lista de libros Existentes *****");
         List<Book> listaLibros = library.getBookList();
         listaLibros.forEach(System.out::println);
@@ -109,6 +103,8 @@ public class MenuSelectorCaseMethods {
         System.out.println();
     }
 
+    // METODOS QUE TRABAJAN EN CONJUNTO PARA ACTUALIZAR LOS LIBROS //
+    //searchBookISBN() NOS DEVUELVE EL INDEX DEL LIBRO QUE COINCIDA CON LA BUSQUEDA MENDIANTE EL CODIGO ISBN//
     public int searchBookIsbn() throws ExcepcionesPropias {
         int isbnCode = -0;
         String codigo;
@@ -125,14 +121,15 @@ public class MenuSelectorCaseMethods {
             Book getBook = library.updateBookForIsbn(codigo);
             isbnCode = bookList.indexOf(getBook);
             System.out.println("Libro a editar: " + getBook);
-            
+
         } catch (ExcepcionesPropias e) {
             System.out.println(e.getMessage());
         }
 
         return isbnCode;
     }
-
+    /* UpdateBook() TOMA LOS NUEVOS DATOS DEL LIBRO A ACTUALIZAR, ESTO SE EJECUTA EN CASO DE
+     QUE SE ENCUENTRE EL CODIGO ISBN DEL LIBRO */
     public Book UpdateBook() {
 
         String bookRename = "";
@@ -184,6 +181,22 @@ public class MenuSelectorCaseMethods {
 
         return new Book(bookRename, authorName, releaseYear, isbnCode);
 
+    }
+
+    //METODO PARA ELIMINAR UN ELEMENTO
+    public void DeleteBook() {
+        System.out.println("***** Eliminar Libros *****");
+        System.out.println("***** Lista de libros Existentes *****");
+        library.getBookList().forEach(System.out::println);
+        System.out.println("----- Ingresa el Codigo ESBN del libro a eliminar -----");
+        String isbnCode = "";
+        isbnCode = scanner.next();
+        try {
+            library.deletedBook(isbnCode);
+            System.out.println("Libro Eliminado");
+        } catch (ExcepcionesPropias e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
