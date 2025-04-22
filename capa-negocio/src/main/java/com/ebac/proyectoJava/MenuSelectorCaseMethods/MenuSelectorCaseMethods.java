@@ -23,6 +23,9 @@ public class MenuSelectorCaseMethods {
         return resultado;
     }
 
+    // METODOS PARA AGREGAR:
+
+    //NOMBRE DEL LIBRO
     public String addBookMethodCase() {
         System.out.println("***** Agregar un Libro *****");
         //NOMBRE DEL LIBRO
@@ -42,6 +45,7 @@ public class MenuSelectorCaseMethods {
         return bookName;
     }
 
+    //AUTOR DEL LIBRO
     public String addAuthorMethodCase() {
         String authorName;
         do {
@@ -56,6 +60,7 @@ public class MenuSelectorCaseMethods {
         return authorName;
     }
 
+    //AÑO DEL LANZAMIENTO
     public int addReleaseYearMethodCase() {
         System.out.print("Ingresa el año de lanzamiento: ");
         int releaseYear;
@@ -69,6 +74,7 @@ public class MenuSelectorCaseMethods {
         return releaseYear;
     }
 
+    //CODIGO ISBN DEL LIBRO
     public String addISBNCodeMethodCase() {
         String isbnCode = "";
 
@@ -87,10 +93,14 @@ public class MenuSelectorCaseMethods {
 
     }
 
+
+    /*METODO PARA CREAR UN LIBRO CON LOS VALORES DE LOS METODOS ANTERIORES*/
     public Book NewBook() {
         return new Book(addBookMethodCase(), addAuthorMethodCase(), addReleaseYearMethodCase(), addISBNCodeMethodCase());
     }
 
+
+    //METODO QUE NOS MUESTRA LA LISTA DE LIBROS
     public void checkListBook() {
         System.out.println("***** Lista de libros Existentes *****");
         List<Book> listaLibros = library.getBookList();
