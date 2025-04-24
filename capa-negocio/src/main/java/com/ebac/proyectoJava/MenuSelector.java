@@ -3,18 +3,19 @@ package com.ebac.proyectoJava;
 import com.ebac.proyectoJava.MenuSelectorCaseMethods.MenuSelectorCaseAuthorMethods;
 import com.ebac.proyectoJava.MenuSelectorCaseMethods.MenuSelectorCaseBooksMethods;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static com.ebac.proyectoJava.MenuSelectorCaseMethods.MenuOptionsTags.menuOptions;
 
 public class MenuSelector {
-    static MenuSelectorCaseBooksMethods menuSelectorCaseBooksMethods = new MenuSelectorCaseBooksMethods();
-    static MenuSelectorCaseAuthorMethods menuSelectorCaseAuthorMethods = new MenuSelectorCaseAuthorMethods();
     public static Scanner scanner = new Scanner(System.in);
     public static Library library = new Library();
 
     public static int menu(int opcion) {
+
         opcion = 0;
         do {
             menuOptions();
@@ -22,7 +23,7 @@ public class MenuSelector {
             try {
                 opcion = scanner.nextInt();
                 scanner.nextLine();
-            } catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 scanner.nextLine();
                 System.out.println("xxxxx Valor invalido. Ingresa un valor listado xxxx");
             }
@@ -31,12 +32,12 @@ public class MenuSelector {
         return opcion;
     }
 
-    public static void operacionDelMenu (int opcion) throws ExcepcionesPropias {
-         //Book newBook;
+    public static void operacionDelMenu(int opcion) throws ExcepcionesPropias {
+        //MenuSelectorCaseAuthorMethods.preuploadAuthors();
         switch (opcion) {
             case 1:
                 //Variable que contiene un libro nuevo a agregar
-                Book newBook = menuSelectorCaseBooksMethods.NewBook();
+                Book newBook = MenuSelectorCaseBooksMethods.NewBook();
 
                 //METODO QUE AGREGA LIBRO A LA LISTA DE LIBROS DE LA BIBLIOTECA
                 library.addBook(newBook);
@@ -44,23 +45,41 @@ public class MenuSelector {
 
             case 2:
                 //Metodo que regresa la lista de libros
-                menuSelectorCaseBooksMethods.ListBooks();
-
+                MenuSelectorCaseBooksMethods.ListBooks();
                 break;
 
             case 3:
                 //Metodo que actualiza un libro
-                int indexBook = menuSelectorCaseBooksMethods.searchBookIsbn();
-                Book updateBook = menuSelectorCaseBooksMethods.UpdateBook();
+                int indexBook = MenuSelectorCaseBooksMethods.searchBookIsbn();
+                Book updateBook = MenuSelectorCaseBooksMethods.UpdateBook();
                 library.updateBook(indexBook, updateBook);
                 break;
+
             case 4:
                 //Metodo que elimina un libro
-                menuSelectorCaseBooksMethods.DeleteBook();
+                MenuSelectorCaseBooksMethods.DeleteBook();
                 break;
 
             case 5:
-                menuSelectorCaseAuthorMethods.addFirstNameAuthorMethodCase();
+                //Metodo que Agrega un autor
+                library.addAuthor(MenuSelectorCaseAuthorMethods.newAuthor());
+                break;
+
+            case 6:
+                //Metodo que regresa la lista de autores
+                MenuSelectorCaseAuthorMethods.ListAuthors();
+                break;
+
+            case 7:
+                //Metodo que actualiza un autor
+                int indexAutor = MenuSelectorCaseAuthorMethods.searchAuthorName();
+                Author updateAutor = MenuSelectorCaseAuthorMethods.UpdateAuthor();
+                library.updateAuthor(indexAutor, updateAutor);
+                break;
+
+            case 8:
+                //Metodo que elimina un author
+                MenuSelectorCaseAuthorMethods.deleteAuthor();
                 break;
             case 12:
 

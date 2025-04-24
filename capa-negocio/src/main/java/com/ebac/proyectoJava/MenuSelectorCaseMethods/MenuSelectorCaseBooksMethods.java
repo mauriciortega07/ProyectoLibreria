@@ -12,7 +12,7 @@ public class MenuSelectorCaseBooksMethods {
 
 
     //METODO QUE COMPRUEBA SI EL VALOR INGRESADO ES UN STRING
-    public boolean isString(String bookName) {
+    public static boolean isString(String bookName) {
         boolean resultado;
         try {
             Integer.parseInt(bookName);
@@ -27,7 +27,7 @@ public class MenuSelectorCaseBooksMethods {
     // METODOS PARA AGREGAR:
 
     //NOMBRE DEL LIBRO
-    public String addBookMethodCase() {
+    public static String addBookMethodCase() {
         System.out.println("***** Agregar un Libro *****");
         //NOMBRE DEL LIBRO
         String bookName = "";
@@ -40,7 +40,7 @@ public class MenuSelectorCaseBooksMethods {
     }
 
     //AUTOR DEL LIBRO
-    public String addAuthorMethodCase() {
+    public static String addAuthorMethodCase() {
         String authorName;
         do {
             System.out.print("Ingresa el nombre del autor: ");
@@ -55,7 +55,7 @@ public class MenuSelectorCaseBooksMethods {
     }
 
     //AÑO DEL LANZAMIENTO
-    public int addReleaseYearMethodCase() {
+    public static int addReleaseYearMethodCase() {
         System.out.print("Ingresa el año de lanzamiento: ");
         int releaseYear;
         while (!scanner.hasNextInt()) {
@@ -69,7 +69,7 @@ public class MenuSelectorCaseBooksMethods {
     }
 
     //CODIGO ISBN DEL LIBRO
-    public String addISBNCodeMethodCase() {
+    public static String addISBNCodeMethodCase() {
         String isbnCode = "";
 
         do {
@@ -89,13 +89,13 @@ public class MenuSelectorCaseBooksMethods {
 
 
     /*METODO PARA CREAR UN LIBRO CON LOS VALORES DE LOS METODOS ANTERIORES*/
-    public Book NewBook() {
+    public static Book NewBook() {
         return new Book(addBookMethodCase(), addAuthorMethodCase(), addReleaseYearMethodCase(), addISBNCodeMethodCase());
     }
 
 
     //METODO QUE NOS MUESTRA LA LISTA DE LIBROS ACTUALES
-    public void ListBooks() {
+    public static void ListBooks() {
         System.out.println("***** Lista de libros Existentes *****");
         List<Book> listaLibros = library.getBookList();
         listaLibros.forEach(System.out::println);
@@ -105,7 +105,7 @@ public class MenuSelectorCaseBooksMethods {
 
     // METODOS QUE TRABAJAN EN CONJUNTO PARA ACTUALIZAR LOS LIBROS //
     //searchBookISBN() NOS DEVUELVE EL INDEX DEL LIBRO QUE COINCIDA CON LA BUSQUEDA MENDIANTE EL CODIGO ISBN//
-    public int searchBookIsbn() throws ExcepcionesPropias {
+    public static int searchBookIsbn() throws ExcepcionesPropias {
         int isbnCode = -0;
         String codigo;
         System.out.println("***** Actualizar un libro *****");
@@ -130,7 +130,7 @@ public class MenuSelectorCaseBooksMethods {
     }
     /* UpdateBook() TOMA LOS NUEVOS DATOS DEL LIBRO A ACTUALIZAR, ESTO SE EJECUTA EN CASO DE
      QUE SE ENCUENTRE EL CODIGO ISBN DEL LIBRO */
-    public Book UpdateBook() {
+    public static Book UpdateBook() {
 
         String bookRename = "";
         do {
@@ -184,7 +184,7 @@ public class MenuSelectorCaseBooksMethods {
     }
 
     //METODO PARA ELIMINAR UN ELEMENTO
-    public void DeleteBook() {
+    public static void DeleteBook() {
         System.out.println("***** Eliminar Libros *****");
         System.out.println("***** Lista de libros Existentes *****");
         library.getBookList().forEach(System.out::println);

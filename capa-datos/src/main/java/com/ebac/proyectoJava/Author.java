@@ -4,33 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Author {
-    private String firstName;
-    private String lastName;
+    private String NameComplete;
+    //private String lastName;
     private String biography;
     private List<Book> booksPublished = new ArrayList<>();
 
-    public Author(String firstName, String lastName, String biography, List<Book> booksPublished) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Author(String NameComplete,String biography, List<Book> booksPublished) {
+        this.NameComplete = NameComplete;
+
         this.biography = biography;
         this.booksPublished = booksPublished;
     }
 
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
+    public void setNameComplete(String NameComplete){
+        this.NameComplete = NameComplete;
     }
 
-    public String getFirstName(){
-        return firstName;
+    public String getNameComplete(){
+        return NameComplete;
     }
 
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
-
-    public String getLastName(){
-        return lastName;
-    }
 
     public void setBiography(String biography){
         this.biography = biography;
@@ -48,4 +41,11 @@ public class Author {
         return booksPublished;
     }
 
+    @Override
+    public String toString() {
+        return "Autor = {" + "Nombre = " + NameComplete +
+                " , Biografia = " + biography + ", Libros publicados: " + booksPublished;
+
+    }
 }
+
