@@ -48,4 +48,8 @@ public class User {
        return borrowedBooks;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario = { " + "nombre: " + username + ", email: " + email + ", password: " + password + ", Libros en renta: " + borrowedBooks + '}';
+    }
 }

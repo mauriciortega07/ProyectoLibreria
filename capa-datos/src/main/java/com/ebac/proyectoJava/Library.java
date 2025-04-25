@@ -136,9 +136,25 @@ public class Library {
     }
 
 
+    //----------- METODOS USUARIOS
     public void addUser(User user) {
         userList.add(user);
         System.out.println("Usuario Agregado!");
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void deletedUser(String userName) throws ExcepcionesPropias {
+        Boolean existUser = userList.stream().allMatch(user -> user.getUsername().equalsIgnoreCase(userName));
+
+        if (!existUser) {
+            throw new ExcepcionesPropias("Este usuario no esta registrado");
+        }
+
+        userList.removeIf(user -> user.getUsername().equalsIgnoreCase(userName));
+        System.out.println("Autor Eliminado");
     }
 
 }

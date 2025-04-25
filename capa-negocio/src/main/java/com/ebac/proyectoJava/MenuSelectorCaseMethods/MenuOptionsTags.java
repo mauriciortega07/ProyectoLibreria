@@ -17,8 +17,9 @@ public class MenuOptionsTags {
         System.out.println("(8)..... Eliminar un autor");
         System.out.println("\n---------------- Usuarios de la Biblioteca -------------------");
         System.out.println("(9)..... Agregar un usuario a la biblioteca");
-        System.out.println("(10)..... Actualizar un usuario");
-        System.out.println("(11)..... Eliminar un usuario");
-        System.out.println("\n(12)..... SALIR DEL PROGRAMA");
+        System.out.println("(10)..... Lista de usuario a la biblioteca");
+        System.out.println("(11)..... Actualizar un usuario");
+        System.out.println("(12)..... Eliminar un usuario");
+        System.out.println("\n(13)..... SALIR DEL PROGRAMA");
     }
 }

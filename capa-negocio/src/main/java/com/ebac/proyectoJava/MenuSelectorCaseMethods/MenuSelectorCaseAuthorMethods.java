@@ -22,6 +22,7 @@ public class MenuSelectorCaseAuthorMethods {
 
     }
 
+
     public static String addFirstNameAuthorMethodCase() {
         String firtsName = "";
         Scanner scanner = new Scanner(System.in);
@@ -33,7 +34,6 @@ public class MenuSelectorCaseAuthorMethods {
                 if (isNumber(firtsName)) {
                     throw new ExcepcionesPropias("No se permiten numeros. Ingresa un nombre correcto");
                 }
-
                 break;
             } catch (ExcepcionesPropias e) {
                 System.out.println("Error " + e.getMessage());
