@@ -7,7 +7,6 @@ import com.ebac.proyectoJava.MenuSelectorCaseMethods.MenuSelectorCaseUsersMethod
 import java.util.*;
 
 import static com.ebac.proyectoJava.MenuSelectorCaseMethods.MenuOptionsTags.menuOptions;
-import static com.ebac.proyectoJava.MenuSelectorCaseMethods.MenuSelectorCaseUsersMethods.isNumber;
 
 public class MenuSelector {
     public static Scanner scanner = new Scanner(System.in);
@@ -60,19 +59,19 @@ public class MenuSelector {
 
             case 5:
                 //Metodo que Agrega un autor
-                library.addAuthor(MenuSelectorCaseAuthorMethods.newAuthor());
+                MenuSelectorCaseAuthorMethods.createAuthor();
                 break;
 
             case 6:
                 //Metodo que regresa la lista de autores
-                MenuSelectorCaseAuthorMethods.ListAuthors();
+                MenuSelectorCaseAuthorMethods.listAuthors();
                 break;
 
             case 7:
                 //Metodo que actualiza un autor
-                int indexAutor = MenuSelectorCaseAuthorMethods.searchAuthorName();
-                Author updateAutor = MenuSelectorCaseAuthorMethods.UpdateAuthor();
-                library.updateAuthor(indexAutor, updateAutor);
+                //int indexAutor = MenuSelectorCaseAuthorMethods.searchAuthorName();
+                //Author updateAutor = MenuSelectorCaseAuthorMethods.UpdateAuthor();
+                MenuSelectorCaseAuthorMethods.updateAuthor();
                 break;
 
             case 8:

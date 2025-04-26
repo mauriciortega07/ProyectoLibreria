@@ -102,6 +102,7 @@ public class MenuSelectorCaseUsersMethods {
             }
         } while (isNumber(respuesta));
 
+        //LISTA DE LIBROS RENTADOS
         List<Book> borrowedBooks = new ArrayList<>();
 
         switch (respuesta) {
@@ -109,7 +110,7 @@ public class MenuSelectorCaseUsersMethods {
                 String cantidadLibros;
                 while (true) {
                     try {
-                        System.out.println("Cantidad de libros a rentar:");
+                        System.out.print("Cantidad de libros a rentar:");
                         cantidadLibros = scanner.nextLine();
                         if (!isNumber(cantidadLibros)) {
                             throw new ExcepcionesPropias("Ingresa una cantidad en numero correcta!");
@@ -122,7 +123,7 @@ public class MenuSelectorCaseUsersMethods {
 
                 for (int i = 0; i < Integer.parseInt(cantidadLibros); i++) {
 
-                    System.out.println("---- AGREGAR LIBRO A LA BIBLIOTECA -----");
+                    System.out.println("---- AGREGAR LIBRO AL USUARIO -----");
                     //NOMBRE DEL LIBRO
                     String bookName;
                     System.out.print("Ingresa el nombre del libro: ");
@@ -154,7 +155,7 @@ public class MenuSelectorCaseUsersMethods {
                     //CODIGO ISBN DEL LIBRO
                     String isbnCode = "";
                     do {
-                        System.out.print("Ingresa el ISBN del Libro: ");
+                        System.out.print("Ingresa el codigo ISBN del Libro: ");
                         isbnCode = scanner.next();
 
                         if (!isbnCode.matches("\\d{4}")) {
@@ -166,7 +167,7 @@ public class MenuSelectorCaseUsersMethods {
 
                     borrowedBooks.add(new Book(bookName, authorName, Integer.parseInt(releaseYear), isbnCode));
                 }
-                library.addUser(new User(userName, email, password, borrowedBooks));
+                library.addUser(new User(userName.toLowerCase(), email, password, borrowedBooks));
                 System.out.println("USUARIO CREADO");
                 break;
 
@@ -187,7 +188,7 @@ public class MenuSelectorCaseUsersMethods {
     }
 
     public static void UpdateUser() {
-        System.out.println("***** Editar Usuarios Existentes *****");
+        System.out.println("***** Actualizar Usuarios Existentes *****");
         System.out.println("*** Lista de Usuarios Existentes ***");
         List<User> listaUsuarios = library.getUserList();
         listaUsuarios.forEach(System.out::println);
@@ -206,6 +207,7 @@ public class MenuSelectorCaseUsersMethods {
             System.out.println("Usuario a editar: " + existUser);
             String respuestaEditar = "";
 
+            //AQUI NOS QUEDAMOS
             //DECIDE SI EL NOMBRE DE USUARIO SE EDITARA
             String userNameOg = library.getUserList().get(indexUser).getUsername();
             System.out.println("Nombre Actual: " + userNameOg);
@@ -243,7 +245,6 @@ public class MenuSelectorCaseUsersMethods {
                     library.getUserList().get(indexUser).setUsername(userRename);
                     break;
 
-
                 case "no":
                     library.getUserList().get(indexUser).setUsername(userNameOg);
                     break;
@@ -280,6 +281,7 @@ public class MenuSelectorCaseUsersMethods {
                             if (!MenuSelectorCaseUsersMethods.isValidEmail(userReemail)) {
                                 throw new ExcepcionesPropias("Ingresa un direccion de correo valida");
                             }
+                            break;
                         } catch (ExcepcionesPropias e) {
                             System.out.println(e.getMessage());
                         }
@@ -437,6 +439,7 @@ public class MenuSelectorCaseUsersMethods {
         }
 
         System.out.println("Usuario Actualizado");
+        scanner.nextLine();
     }
 
     public static void DeleteUser() throws ExcepcionesPropias {
