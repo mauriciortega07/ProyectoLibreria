@@ -33,28 +33,23 @@ public class MenuSelector {
         //MenuSelectorCaseAuthorMethods.preuploadAuthors();
         switch (opcion) {
             case 1:
-                //Variable que contiene un libro nuevo a agregar
-                Book newBook = MenuSelectorCaseBooksMethods.NewBook();
-
-                //METODO QUE AGREGA LIBRO A LA LISTA DE LIBROS DE LA BIBLIOTECA
-                library.addBook(newBook);
+                //Metodo que agrega un libro a la biblioteca
+                MenuSelectorCaseBooksMethods.createNewBook();
                 break;
 
             case 2:
                 //Metodo que regresa la lista de libros
-                MenuSelectorCaseBooksMethods.ListBooks();
+                MenuSelectorCaseBooksMethods.listBooks();
                 break;
 
             case 3:
                 //Metodo que actualiza un libro
-                int indexBook = MenuSelectorCaseBooksMethods.searchBookIsbn();
-                Book updateBook = MenuSelectorCaseBooksMethods.UpdateBook();
-                library.updateBook(indexBook, updateBook);
+                MenuSelectorCaseBooksMethods.updateBook();
                 break;
 
             case 4:
                 //Metodo que elimina un libro
-                MenuSelectorCaseBooksMethods.DeleteBook();
+                MenuSelectorCaseBooksMethods.deleteBook();
                 break;
 
             case 5:

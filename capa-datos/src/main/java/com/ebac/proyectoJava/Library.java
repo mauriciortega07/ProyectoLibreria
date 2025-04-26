@@ -22,9 +22,6 @@ public class Library {
 
         if(!existBookForName && !existBookForIsbnCode){
             bookList.add(book);
-            System.out.println("+++++++++++++++++++");
-            System.out.println("++LIBRO AGREGADO!++");
-            System.out.println("+++++++++++++++++++");
         } else {
             System.out.println("*** ESTE LIBRO YA EXISTE ***");
         }
@@ -36,22 +33,6 @@ public class Library {
         return bookList;
     }
 
-    //METODOS PARA ACTUALIZAR LIBROS
-    public Book updateBookForIsbn(String isbnCode) throws ExcepcionesPropias {
-        return bookList.stream()
-                .filter(book -> book.getIsbnCode().equalsIgnoreCase(isbnCode))
-                .findFirst()
-                .orElseThrow(() -> new ExcepcionesPropias("Libro con isbn " + isbnCode + " No econtrado"));
-    }
-
-    public void updateBook(int indexBook, Book book) {
-        bookList.set(indexBook, book);
-        System.out.println(bookList.get(indexBook));
-        System.out.println("+++++++++++++++++++");
-        System.out.println("++LIBRO ACTUALIZADO!++");
-        System.out.println("+++++++++++++++++++");
-    }
-
     //METODOS PARA ELIMINAR LIBROS
     public void deletedBook(String isbnCode) throws ExcepcionesPropias {
         boolean existIsbnCode = bookList.stream().anyMatch(book -> book.getIsbnCode().equalsIgnoreCase(isbnCode));
@@ -61,6 +42,7 @@ public class Library {
         }
 
         bookList.removeIf(book -> book.getIsbnCode().equalsIgnoreCase(isbnCode));
+
     }
 
     //------------------- METODOS AUTORES ------------
@@ -72,12 +54,10 @@ public class Library {
         try {
             if(!existNameCompleteAuthor) {
                 authorList.add(author);
-                System.out.println("+++++++++++++++++++");
-                System.out.println("++AUTOR AGREGADO!++");
-                System.out.println("+++++++++++++++++++");
             } else {
                 throw new ExcepcionesPropias("Este autor ya existe");
             }
+
         } catch (ExcepcionesPropias e){
             System.out.println(e.getMessage());
         }
@@ -94,14 +74,30 @@ public class Library {
             throw new ExcepcionesPropias("Autor no registrado");
         }
         authorList.removeIf(author -> author.getNameComplete().equalsIgnoreCase(authorName));
-        System.out.println("Autor Eliminado");
+        System.out.println("---------------------------");
+        System.out.println("------AUTOR ELIMINADO------");
+        System.out.println("---------------------------");
 
     }
 
     //----------- METODOS USUARIOS
     public void addUser(User user) {
-        userList.add(user);
-        System.out.println("Usuario Agregado!");
+
+        boolean existNameCompleteUser = userList.stream()
+                .anyMatch(newUser -> newUser.getUsername().equalsIgnoreCase(user.getUsername()));
+
+        try {
+            if(!existNameCompleteUser) {
+                userList.add(user);
+                System.out.println("Usuario Agregado!");
+            } else {
+                throw new ExcepcionesPropias("Este usuario ya existe");
+            }
+
+        } catch (ExcepcionesPropias e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public List<User> getUserList() {
@@ -109,14 +105,16 @@ public class Library {
     }
 
     public void deletedUser(String userName) throws ExcepcionesPropias {
-        Boolean existUser = userList.stream().allMatch(user -> user.getUsername().equalsIgnoreCase(userName));
+        Boolean existUser = userList.stream().anyMatch(user -> user.getUsername().equalsIgnoreCase(userName));
 
         if (!existUser) {
             throw new ExcepcionesPropias("Este usuario no esta registrado");
         }
 
         userList.removeIf(user -> user.getUsername().equalsIgnoreCase(userName));
-        System.out.println("Autor Eliminado");
+        System.out.println("------------------");
+        System.out.println("--Autor Eliminado-");
+        System.out.println("------------------");
     }
 
 }

@@ -43,7 +43,7 @@ public class MenuSelectorCaseUsersMethods {
         while (true) {
             try {
                 System.out.println("Ingresa un nombre de usuario: ");
-                userName = scanner.nextLine();
+                userName = scanner.nextLine().toLowerCase();
 
                 if (isNumber(userName)) {
                     throw new ExcepcionesPropias("No se permiten numeros. Ingresa tu nombre completo");
@@ -93,7 +93,7 @@ public class MenuSelectorCaseUsersMethods {
         do {
             System.out.println("Quieres pedir prestado un libro?");
             try {
-                respuesta = scanner.nextLine();
+                respuesta = scanner.nextLine().toLowerCase();
                 if (isNumber(respuesta)) {
                     throw new ExcepcionesPropias("Ingresa si o no para continuar");
                 }
@@ -126,14 +126,14 @@ public class MenuSelectorCaseUsersMethods {
                     System.out.println("---- AGREGAR LIBRO AL USUARIO -----");
                     //NOMBRE DEL LIBRO
                     String bookName;
-                    System.out.print("Ingresa el nombre del libro: ");
-                    bookName = scanner.nextLine();
+                    System.out.print("Ingresa el nombre del libro " + i + " :");
+                    bookName = scanner.nextLine().toLowerCase();
 
                     //NOMBRE DEL AUTOR
                     String authorName;
                     do {
                         System.out.print("Ingresa el nombre del autor: ");
-                        authorName = scanner.nextLine();
+                        authorName = scanner.nextLine().toLowerCase();
 
                         if (isNumber(authorName)) {
                             System.out.println("Debes ingresar un nombre correcto");
@@ -168,16 +168,21 @@ public class MenuSelectorCaseUsersMethods {
                     borrowedBooks.add(new Book(bookName, authorName, Integer.parseInt(releaseYear), isbnCode));
                 }
                 library.addUser(new User(userName.toLowerCase(), email, password, borrowedBooks));
-                System.out.println("USUARIO CREADO");
+                System.out.println("---------------------------");
+                System.out.println("------USUARIO CREADO-------");
+                System.out.println("---------------------------");
                 break;
 
             case "no":
                 library.addUser(new User(userName.toLowerCase(), email, password, borrowedBooks));
-                System.out.println("USUARIO CREADO");
+                System.out.println("---------------------------");
+                System.out.println("-------USUARIO CREADO------");
+                System.out.println("----SIN LIBROS RENTADOS----");
                 break;
             default:
                 System.out.println("Ingresa si o no, para continuar");
         }
+        scanner.nextLine();
     }
 
     public static void ListUsers() {
@@ -185,6 +190,8 @@ public class MenuSelectorCaseUsersMethods {
         List<User> listaUsuarios = library.getUserList();
         listaUsuarios.forEach(System.out::println);
         System.out.println("Hay " + listaUsuarios.size() + " usuarios registrados en la biblioteca");
+
+        scanner.nextLine();
     }
 
     public static void UpdateUser() {
@@ -195,7 +202,7 @@ public class MenuSelectorCaseUsersMethods {
 
         System.out.println("Ingresa el nombre del usuario a editar: ");
         String username;
-        username = scanner.nextLine();
+        username = scanner.nextLine().toLowerCase();
 
         try {
 
@@ -233,7 +240,7 @@ public class MenuSelectorCaseUsersMethods {
                     while (true) {
                         try {
                             System.out.println("Ingresa tu nuevo nombre de usuario: ");
-                            userRename = scanner.nextLine();
+                            userRename = scanner.nextLine().toLowerCase();
                             if (isNumber(userRename)) {
                                 throw new ExcepcionesPropias("No se permiten numeros. Ingresa tu nombre completo");
                             }
@@ -260,7 +267,7 @@ public class MenuSelectorCaseUsersMethods {
             do {
                 System.out.println("¿Deseas cambiar tu email?: ");
                 try {
-                    respuestaEditar = scanner.nextLine();
+                    respuestaEditar = scanner.nextLine().toLowerCase();
                     if (isNumber(respuestaEditar)) {
                         throw new ExcepcionesPropias("Ingresa si o no para continuar");
                     }
@@ -304,7 +311,7 @@ public class MenuSelectorCaseUsersMethods {
             do {
                 System.out.println("¿Deseas cambiar tu contrasena?: ");
                 try {
-                    respuestaEditar = scanner.nextLine();
+                    respuestaEditar = scanner.nextLine().toLowerCase();
                     if (isNumber(respuestaEditar)) {
                         throw new ExcepcionesPropias("Ingresa si o no para continuar");
                     }
@@ -348,7 +355,7 @@ public class MenuSelectorCaseUsersMethods {
             do {
                 System.out.println("¿Deseas rentar mas libros?");
                 try {
-                    respuestaEditar = scanner.nextLine();
+                    respuestaEditar = scanner.nextLine().toLowerCase();
                     if (isNumber(respuestaEditar)) {
                         throw new ExcepcionesPropias("Ingresa si o no para continuar");
                     }
@@ -380,13 +387,13 @@ public class MenuSelectorCaseUsersMethods {
                         //NOMBRE DEL LIBRO
                         String bookName;
                         System.out.print("Ingresa el nombre del libro: ");
-                        bookName = scanner.nextLine();
+                        bookName = scanner.nextLine().toLowerCase();
 
                         //NOMBRE DEL AUTOR
                         String authorName;
                         do {
                             System.out.print("Ingresa el nombre del autor: ");
-                            authorName = scanner.nextLine();
+                            authorName = scanner.nextLine().toLowerCase();
 
                             if (isNumber(authorName)) {
                                 System.out.println("Debes ingresar un nombre correcto");
@@ -421,11 +428,16 @@ public class MenuSelectorCaseUsersMethods {
 
                         library.getUserList().get(indexUser).getBorrowedBooks().add(new Book(bookName, authorName, Integer.parseInt(releaseYear), isbnCode));
                     }
-                    System.out.println("Libros Rentados Actulizados");
+                    System.out.println("---------------------------");
+                    System.out.println("LIBROS RENTADOS ACTUALIZADOS");
+                    System.out.println("---------------------------");
+
                     break;
 
                 case "no":
+                    System.out.println("--------------------------------------------");
                     System.out.println("No se reciben cambios en los libros rentados");
+                    System.out.println("--------------------------------------------");
                     break;
 
                 default:
@@ -437,12 +449,13 @@ public class MenuSelectorCaseUsersMethods {
             System.out.println(e.getMessage());
             scanner.nextLine();
         }
-
-        System.out.println("Usuario Actualizado");
+        System.out.println("---------------------------");
+        System.out.println("-----USUARIO ACTUALIZADO---");
+        System.out.println("---------------------------");
         scanner.nextLine();
     }
 
-    public static void DeleteUser() throws ExcepcionesPropias {
+    public static void DeleteUser() {
         System.out.println("***** Eliminar un usuario *****");
 
             try {
@@ -461,7 +474,7 @@ public class MenuSelectorCaseUsersMethods {
                 System.out.println(e.getMessage());
             }
 
-
+        scanner.nextLine();
 
     }
 

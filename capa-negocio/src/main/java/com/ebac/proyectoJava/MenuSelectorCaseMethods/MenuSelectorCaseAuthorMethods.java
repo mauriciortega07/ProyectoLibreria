@@ -23,12 +23,12 @@ public class MenuSelectorCaseAuthorMethods {
     }
 
     public static void createAuthor() {
-
+        System.out.println("---- AGREGAR AUTOR A LA BIBLIOTECA-----");
         //Agrega Nombre Completo de autor
         String authorName = "";
         while (true) {
             System.out.println("Ingresa el nombre del autor: ");
-            authorName = scanner.nextLine();
+            authorName = scanner.nextLine().toLowerCase();
             try {
                 if (isNumber(authorName)) {
                     throw new ExcepcionesPropias("No se permiten numeros. Ingresa un nombre correcto");
@@ -43,7 +43,7 @@ public class MenuSelectorCaseAuthorMethods {
         String biography = "";
         while (true) {
             System.out.println("Escribe su biografia: ");
-            biography = scanner.nextLine();
+            biography = scanner.nextLine().toLowerCase();
 
             try {
                 if (isNumber(biography)) {
@@ -60,7 +60,7 @@ public class MenuSelectorCaseAuthorMethods {
         do {
             System.out.println("Deseas agregar libros a este autor? (Puedes hacerlo despues en la seccion de editar autor): ");
             try {
-                respuesta = scanner.nextLine();
+                respuesta = scanner.nextLine().toLowerCase();
                 if (isNumber(respuesta)) {
                     throw new ExcepcionesPropias("Ingresa si o no para continuar");
                 }
@@ -94,10 +94,7 @@ public class MenuSelectorCaseAuthorMethods {
                     //TOMA EL NOMBRE DEL LIBRO A AGREGAR A LA LISTA DE LIBROS PUBLICADOS
                     String bookname;
                     System.out.println("Ingresa el nombre del libro: ");
-                    bookname = scanner.nextLine();
-
-                    //TOMA EL NOMBRE DE AUTOR DEL LIBRO (REGRESA EL TOMADO)
-                    //System.out.println("Nombre del Autor: " + authorName);
+                    bookname = scanner.nextLine().toLowerCase();
 
                     //TOMA EL AÑO DE PUBLICACION
                     String releaseYear;
@@ -134,7 +131,9 @@ public class MenuSelectorCaseAuthorMethods {
 
                 //AQUI SE AGREGA EL AUTOR CREADO Y SE AGREGA A LA LISTA DE AUTORES
                 library.addAuthor(new Author(authorName, biography, booksPublished));
-                System.out.println("AUTOR CREADO COMPLETO");
+                System.out.println("---------------------------------");
+                System.out.println("-----AUTOR CREADO COMPLETO-------");
+                System.out.println("---------------------------------");
                 break;
 
             case "no":
@@ -142,7 +141,13 @@ public class MenuSelectorCaseAuthorMethods {
                 LISTA DE LIBROS PUBLICADOS Y SE AGREGA A LA LISTA DE AUTORES*/
 
                 library.addAuthor(new Author(authorName, biography, booksPublished));
-                System.out.println("AUTOR CREADO SIN LIBROS AGREGADOS");
+
+                if(booksPublished.isEmpty()){
+                    System.out.println("---------------------------------");
+                    System.out.println("AUTOR CREADO SIN LIBROS AGREGADOS");
+                    System.out.println("---------------------------------");
+                }
+
                 break;
             default:
                 System.out.println("Ingresa si o no para continuar");
@@ -158,7 +163,7 @@ public class MenuSelectorCaseAuthorMethods {
 
         System.out.println("Ingresa el nombre del autor a editar: ");
         String nameAuthor;
-        nameAuthor = scanner.nextLine();
+        nameAuthor = scanner.nextLine().toLowerCase();
 
         try {
 
@@ -194,7 +199,7 @@ public class MenuSelectorCaseAuthorMethods {
                     while (true) {
                         try {
                             System.out.print("Ingresa el nombre del autor: ");
-                            authorRename = scanner.nextLine();
+                            authorRename = scanner.nextLine().toLowerCase();
                             if (isNumber(authorRename)) {
                                 throw new ExcepcionesPropias("No se permiten numeros. Ingresa tu nombre");
                             }
@@ -219,7 +224,7 @@ public class MenuSelectorCaseAuthorMethods {
             System.out.println("Biografia actual: " + authorBiographyOG);
             do {
                 System.out.println("Deseas hacer cambios en su biografia?: ");
-                respuestaEditar = scanner.nextLine();
+                respuestaEditar = scanner.nextLine().toLowerCase();
                 try {
                     if (isNumber(respuestaEditar)) {
                         throw new ExcepcionesPropias("No ingreses numeros como inciales, escribe su biografia");
@@ -235,7 +240,7 @@ public class MenuSelectorCaseAuthorMethods {
                     String authorRebiography = "";
                     do {
                         System.out.print("Escribe la nueva biografia: ");
-                        authorRebiography = scanner.nextLine();
+                        authorRebiography = scanner.nextLine().toLowerCase();
                         try {
                             if (isNumber(authorRebiography)) {
                                 throw new ExcepcionesPropias("No ingreses numeros como iniciales, escribe bien su biografia");
@@ -268,7 +273,7 @@ public class MenuSelectorCaseAuthorMethods {
             do {
                 System.out.println("¿Deseas registrarle un libro al autor?: ");
                 try {
-                    respuestaEditar = scanner.nextLine();
+                    respuestaEditar = scanner.nextLine().toLowerCase();
                     if (isNumber(respuestaEditar)) {
                         throw new ExcepcionesPropias("Ingresa si o no para continuar");
                     }
@@ -295,11 +300,11 @@ public class MenuSelectorCaseAuthorMethods {
                     }
                     for (int i = 0; i < Integer.parseInt(cantidadLibros); i++) {
 
-                        System.out.println("---- AGREGAR LIBRO A LA RENTA -----");
+                        System.out.println("---- AGREGAR LIBRO AL AUTOR -----");
                         //NOMBRE DEL LIBRO
                         String bookName;
                         System.out.println("Ingresa el nombre del libro: ");
-                        bookName = scanner.nextLine();
+                        bookName = scanner.nextLine().toLowerCase();
 
                         //NOMBRE DEL AUTOR
                         System.out.println("Ingresa el nombre del autor: " + authorNameOg);
@@ -331,12 +336,15 @@ public class MenuSelectorCaseAuthorMethods {
                         //scanner.nextLine();
 
                         authorInList.getBooksPublished().add(new Book(bookName, authorNameOg, Integer.parseInt(releaseYear), isbnCode));
+                        System.out.println("---------------------------");
+                        System.out.println("---- AUTOR ACTUALIZADO ----");
+                        System.out.println("---------------------------");
                     }
-                    System.out.println("Libros Rentados Actulizados");
+                    System.out.println("Libros Del Autor Actualizados");
                     break;
 
                 case "no":
-                    System.out.println("No se reciben cambios en los libros rentados");
+                    System.out.println("No se reciben cambios en los libros del autor");
                     break;
                 default:
                     System.out.println("Debes ingresar si o no para continuar");
@@ -345,7 +353,7 @@ public class MenuSelectorCaseAuthorMethods {
         } catch (ExcepcionesPropias e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("---- AUTOR ACTUALIZADO ----");
+
         scanner.nextLine();
     }
 
@@ -364,7 +372,7 @@ public class MenuSelectorCaseAuthorMethods {
         library.getAuthorList().forEach(System.out::println);
         System.out.println("Ingresa el nombre del autor a eliminar");
         String authorName = "";
-        authorName = scanner.nextLine();
+        authorName = scanner.nextLine().toLowerCase();
 
         try {
             library.deletedAuthor(authorName);
