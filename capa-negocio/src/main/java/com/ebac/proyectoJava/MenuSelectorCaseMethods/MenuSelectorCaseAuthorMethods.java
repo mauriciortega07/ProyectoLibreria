@@ -93,7 +93,7 @@ public class MenuSelectorCaseAuthorMethods {
                     System.out.println("---- AGREGAR LIBRO AL AUTOR ---");
                     //TOMA EL NOMBRE DEL LIBRO A AGREGAR A LA LISTA DE LIBROS PUBLICADOS
                     String bookname;
-                    System.out.println("Ingresa el nombre del libro: ");
+                    System.out.println("Ingresa el nombre del libro " + (i+1) + " : ");
                     bookname = scanner.nextLine().toLowerCase();
 
                     //TOMA EL AÑO DE PUBLICACION
@@ -131,9 +131,7 @@ public class MenuSelectorCaseAuthorMethods {
 
                 //AQUI SE AGREGA EL AUTOR CREADO Y SE AGREGA A LA LISTA DE AUTORES
                 library.addAuthor(new Author(authorName, biography, booksPublished));
-                System.out.println("---------------------------------");
-                System.out.println("-----AUTOR CREADO COMPLETO-------");
-                System.out.println("---------------------------------");
+
                 break;
 
             case "no":
@@ -141,12 +139,6 @@ public class MenuSelectorCaseAuthorMethods {
                 LISTA DE LIBROS PUBLICADOS Y SE AGREGA A LA LISTA DE AUTORES*/
 
                 library.addAuthor(new Author(authorName, biography, booksPublished));
-
-                if(booksPublished.isEmpty()){
-                    System.out.println("---------------------------------");
-                    System.out.println("AUTOR CREADO SIN LIBROS AGREGADOS");
-                    System.out.println("---------------------------------");
-                }
 
                 break;
             default:
@@ -198,7 +190,7 @@ public class MenuSelectorCaseAuthorMethods {
                     String authorRename;
                     while (true) {
                         try {
-                            System.out.print("Ingresa el nombre del autor: ");
+                            System.out.println("Ingresa el nombre del autor: ");
                             authorRename = scanner.nextLine().toLowerCase();
                             if (isNumber(authorRename)) {
                                 throw new ExcepcionesPropias("No se permiten numeros. Ingresa tu nombre");
@@ -239,7 +231,7 @@ public class MenuSelectorCaseAuthorMethods {
                 case "si":
                     String authorRebiography = "";
                     do {
-                        System.out.print("Escribe la nueva biografia: ");
+                        System.out.println("Escribe la nueva biografia: ");
                         authorRebiography = scanner.nextLine().toLowerCase();
                         try {
                             if (isNumber(authorRebiography)) {
@@ -303,7 +295,7 @@ public class MenuSelectorCaseAuthorMethods {
                         System.out.println("---- AGREGAR LIBRO AL AUTOR -----");
                         //NOMBRE DEL LIBRO
                         String bookName;
-                        System.out.println("Ingresa el nombre del libro: ");
+                        System.out.println("Ingresa el nombre del libro: " + (i+1) + " : ");
                         bookName = scanner.nextLine().toLowerCase();
 
                         //NOMBRE DEL AUTOR
@@ -345,10 +337,12 @@ public class MenuSelectorCaseAuthorMethods {
 
                 case "no":
                     System.out.println("No se reciben cambios en los libros del autor");
+                    System.out.println("-----AUTOR ACTUALIZADO-----");
                     break;
                 default:
                     System.out.println("Debes ingresar si o no para continuar");
             }
+
 
         } catch (ExcepcionesPropias e) {
             System.out.println(e.getMessage());

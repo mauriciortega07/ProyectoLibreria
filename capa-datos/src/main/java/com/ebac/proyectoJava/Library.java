@@ -22,6 +22,9 @@ public class Library {
 
         if(!existBookForName && !existBookForIsbnCode){
             bookList.add(book);
+            System.out.println("--------------------");
+            System.out.println("---LIBRO AGREGADO---");
+            System.out.println("--------------------");
         } else {
             System.out.println("*** ESTE LIBRO YA EXISTE ***");
         }
@@ -54,6 +57,14 @@ public class Library {
         try {
             if(!existNameCompleteAuthor) {
                 authorList.add(author);
+                System.out.println("---------------------------------");
+                System.out.println("-----AUTOR CREADO COMPLETO-------");
+                System.out.println("---------------------------------");
+
+            } else if (!existNameCompleteAuthor && authorList.isEmpty()){
+                System.out.println("---------------------------------");
+                System.out.println("AUTOR CREADO SIN LIBROS AGREGADOS");
+                System.out.println("---------------------------------");
             } else {
                 throw new ExcepcionesPropias("Este autor ya existe");
             }
@@ -89,7 +100,15 @@ public class Library {
         try {
             if(!existNameCompleteUser) {
                 userList.add(user);
-                System.out.println("Usuario Agregado!");
+                System.out.println("---------------------------------");
+                System.out.println("-----AUTOR CREADO COMPLETO-------");
+                System.out.println("---------------------------------");
+
+            } else if (!existNameCompleteUser && user.getBorrowedBooks().isEmpty()) {
+                System.out.println("---------------------------");
+                System.out.println("-------USUARIO CREADO------");
+                System.out.println("----SIN LIBROS RENTADOS----");
+                System.out.println("---------------------------");
             } else {
                 throw new ExcepcionesPropias("Este usuario ya existe");
             }

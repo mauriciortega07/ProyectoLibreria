@@ -29,13 +29,13 @@ public class MenuSelectorCaseBooksMethods {
         System.out.println("---- AGREGAR LIBRO A LA BIBLIOTECA-----");
         //NOMBRE DEL LIBRO
         String bookName;
-        System.out.print("Ingresa el nombre del libro: ");
+        System.out.println("Ingresa el nombre del libro: ");
         bookName = scanner.nextLine().toLowerCase();
 
         //NOMBRE DEL AUTOR
         String authorName;
         do {
-            System.out.print("Ingresa el nombre del autor: ");
+            System.out.println("Ingresa el nombre del autor: ");
             authorName = scanner.nextLine().toLowerCase();
 
             if (isNumber(authorName)) {
@@ -46,7 +46,7 @@ public class MenuSelectorCaseBooksMethods {
         //AÑO DEL LANZAMIENTO
         String releaseYear;
         do {
-            System.out.print("Ingresa el año de lanzamiento: ");
+            System.out.println("Ingresa el año de lanzamiento: ");
             releaseYear = scanner.nextLine();
 
             if (!releaseYear.matches("\\d{4}")) {
@@ -57,7 +57,7 @@ public class MenuSelectorCaseBooksMethods {
         //CODIGO ISBN DEL LIBRO
         String isbnCode = "";
         do {
-            System.out.print("Ingresa el codigo ISBN del Libro: ");
+            System.out.println("Ingresa el codigo ISBN del Libro: ");
             isbnCode = scanner.nextLine();
 
             if (!isbnCode.matches("\\d{4}")) {
@@ -68,9 +68,7 @@ public class MenuSelectorCaseBooksMethods {
 
         library.addBook(new Book(bookName, authorName, Integer.parseInt(releaseYear), isbnCode));
 
-        System.out.println("--------------------");
-        System.out.println("---LIBRO AGREGADO---");
-        System.out.println("--------------------");
+
 
         scanner.nextLine();
     }
@@ -128,7 +126,7 @@ public class MenuSelectorCaseBooksMethods {
                     String bookRename;
                     while (true) {
                         try {
-                            System.out.print("Ingresa el nombre del Libro: ");
+                            System.out.println("Ingresa el nombre del Libro: ");
                             bookRename = scanner.nextLine().toLowerCase();
                             if (isNumber(bookRename)) {
                                 throw new ExcepcionesPropias("No se permiten numeros. Ingresa tu nombre");
@@ -172,7 +170,7 @@ public class MenuSelectorCaseBooksMethods {
                     String authorRename;
                     while (true) {
                         try {
-                            System.out.print("Ingresa el nombre del autor: ");
+                            System.out.println("Ingresa el nombre del autor: ");
                             authorRename = scanner.nextLine().toLowerCase();
                             if (isNumber(authorRename)) {
                                 throw new ExcepcionesPropias("No se permiten numeros. Ingresa tu nombre");
@@ -216,7 +214,7 @@ public class MenuSelectorCaseBooksMethods {
                     String releaseYearRename;
                     while (true) {
                         try {
-                            System.out.print("Ingresa el año de lanzamiento: ");
+                            System.out.println("Ingresa el año de lanzamiento: ");
                             releaseYearRename = scanner.nextLine();
                             if (!isNumber(releaseYearRename)) {
                                 throw new ExcepcionesPropias("Ingresa el año de lanzamiento correcto");
@@ -229,10 +227,8 @@ public class MenuSelectorCaseBooksMethods {
                     }
                     bookInList.setReleaseYear(Integer.parseInt(releaseYearRename));
                     System.out.println("----Campo Actualizado----");
-                    System.out.println("---------------------------");
-                    System.out.println("---- LIBRO ACTUALIZADO ----");
-                    System.out.println("---------------------------");
                     break;
+
                 case "no":
                     bookInList.setReleaseYear(releaseYearOg);
                     System.out.println("----Campo Sin Cambios----");
@@ -263,7 +259,7 @@ public class MenuSelectorCaseBooksMethods {
                     String isbnCodeRename;
                     while (true) {
                         try {
-                            System.out.print("Ingresa el codigo ISBN: ");
+                            System.out.println("Ingresa el codigo ISBN: ");
                             isbnCodeRename = scanner.nextLine();
                             if (!isNumber(isbnCodeRename)) {
                                 throw new ExcepcionesPropias("Ingresa un Codigo ISBN valido");

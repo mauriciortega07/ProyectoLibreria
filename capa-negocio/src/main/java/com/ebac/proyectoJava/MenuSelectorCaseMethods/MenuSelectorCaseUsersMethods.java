@@ -110,7 +110,7 @@ public class MenuSelectorCaseUsersMethods {
                 String cantidadLibros;
                 while (true) {
                     try {
-                        System.out.print("Cantidad de libros a rentar:");
+                        System.out.println("Cantidad de libros a rentar:");
                         cantidadLibros = scanner.nextLine();
                         if (!isNumber(cantidadLibros)) {
                             throw new ExcepcionesPropias("Ingresa una cantidad en numero correcta!");
@@ -126,13 +126,13 @@ public class MenuSelectorCaseUsersMethods {
                     System.out.println("---- AGREGAR LIBRO AL USUARIO -----");
                     //NOMBRE DEL LIBRO
                     String bookName;
-                    System.out.print("Ingresa el nombre del libro " + i + " :");
+                    System.out.println("Ingresa el nombre del libro " + (i + 1) + " :");
                     bookName = scanner.nextLine().toLowerCase();
 
                     //NOMBRE DEL AUTOR
                     String authorName;
                     do {
-                        System.out.print("Ingresa el nombre del autor: ");
+                        System.out.println("Ingresa el nombre del autor: ");
                         authorName = scanner.nextLine().toLowerCase();
 
                         if (isNumber(authorName)) {
@@ -144,7 +144,7 @@ public class MenuSelectorCaseUsersMethods {
 
                     String releaseYear;
                     do {
-                        System.out.print("Ingresa el año de lanzamiento: ");
+                        System.out.println("Ingresa el año de lanzamiento: ");
                         releaseYear = scanner.nextLine();
 
                         if (!releaseYear.matches("\\d{4}")){
@@ -155,7 +155,7 @@ public class MenuSelectorCaseUsersMethods {
                     //CODIGO ISBN DEL LIBRO
                     String isbnCode = "";
                     do {
-                        System.out.print("Ingresa el codigo ISBN del Libro: ");
+                        System.out.println("Ingresa el codigo ISBN del Libro: ");
                         isbnCode = scanner.next();
 
                         if (!isbnCode.matches("\\d{4}")) {
@@ -168,16 +168,11 @@ public class MenuSelectorCaseUsersMethods {
                     borrowedBooks.add(new Book(bookName, authorName, Integer.parseInt(releaseYear), isbnCode));
                 }
                 library.addUser(new User(userName.toLowerCase(), email, password, borrowedBooks));
-                System.out.println("---------------------------");
-                System.out.println("------USUARIO CREADO-------");
-                System.out.println("---------------------------");
                 break;
 
             case "no":
                 library.addUser(new User(userName.toLowerCase(), email, password, borrowedBooks));
-                System.out.println("---------------------------");
-                System.out.println("-------USUARIO CREADO------");
-                System.out.println("----SIN LIBROS RENTADOS----");
+
                 break;
             default:
                 System.out.println("Ingresa si o no, para continuar");
@@ -349,7 +344,7 @@ public class MenuSelectorCaseUsersMethods {
 
             //DECIDE SI SE RENTARAN MAS LIBROS SE EDITARA
             List<Book> userBorrowedListOg = library.getUserList().get(indexUser).getBorrowedBooks();
-            System.out.print("Libros Rentados: ");
+            System.out.println("Libros Rentados: ");
             userBorrowedListOg.forEach(System.out::println);
 
             do {
@@ -386,13 +381,13 @@ public class MenuSelectorCaseUsersMethods {
                         System.out.println("---- AGREGAR LIBRO A LA RENTA -----");
                         //NOMBRE DEL LIBRO
                         String bookName;
-                        System.out.print("Ingresa el nombre del libro: ");
+                        System.out.println("Ingresa el nombre del libro: " + (i+1) + " : ");
                         bookName = scanner.nextLine().toLowerCase();
 
                         //NOMBRE DEL AUTOR
                         String authorName;
                         do {
-                            System.out.print("Ingresa el nombre del autor: ");
+                            System.out.println("Ingresa el nombre del autor: ");
                             authorName = scanner.nextLine().toLowerCase();
 
                             if (isNumber(authorName)) {
@@ -404,7 +399,7 @@ public class MenuSelectorCaseUsersMethods {
 
                         String releaseYear;
                         do {
-                            System.out.print("Ingresa el año de lanzamiento: ");
+                            System.out.println("Ingresa el año de lanzamiento: ");
                             releaseYear = scanner.nextLine();
 
                             if (!releaseYear.matches("\\d{4}")){
@@ -416,7 +411,7 @@ public class MenuSelectorCaseUsersMethods {
                         //CODIGO ISBN DEL LIBRO
                         String isbnCode = "";
                         do {
-                            System.out.print("Ingresa el ISBN del Libro: ");
+                            System.out.println("Ingresa el ISBN del Libro: ");
                             isbnCode = scanner.nextLine();
 
                             if (!isbnCode.matches("\\d{4}")) {
@@ -432,12 +427,18 @@ public class MenuSelectorCaseUsersMethods {
                     System.out.println("LIBROS RENTADOS ACTUALIZADOS");
                     System.out.println("---------------------------");
 
+                    System.out.println("---------------------------");
+                    System.out.println("-----USUARIO ACTUALIZADO---");
+                    System.out.println("---------------------------");
+
                     break;
 
                 case "no":
                     System.out.println("--------------------------------------------");
                     System.out.println("No se reciben cambios en los libros rentados");
                     System.out.println("--------------------------------------------");
+
+
                     break;
 
                 default:
@@ -449,9 +450,7 @@ public class MenuSelectorCaseUsersMethods {
             System.out.println(e.getMessage());
             scanner.nextLine();
         }
-        System.out.println("---------------------------");
-        System.out.println("-----USUARIO ACTUALIZADO---");
-        System.out.println("---------------------------");
+
         scanner.nextLine();
     }
 
