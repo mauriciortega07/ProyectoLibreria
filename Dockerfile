@@ -1,11 +1,11 @@
 #IMAGEN A UTILIZAR
-FROM openjdk:11
+FROM openjdk:11-jdk-slim
 
 #DIRECTORIO DEL PROYECTO
 WORKDIR /app
 
 #COPIAMOS EL jar AL DOCKER
-COPY contexto/build/libs/contexto.jar proyecto.jar
+COPY contexto/build/libs/contexto-all.jar proyectoJavaLibreriaEbac.jar
 
 #COMANDO PARA INICIAR EL PROYECTO
-ENTRYPOINT ["java", "-jar", "proyecto.jar"
+ENTRYPOINT ["java", "-jar", "proyectoJavaLibreriaEbac.jar"]
